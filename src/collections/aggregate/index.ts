@@ -83,9 +83,10 @@ type MetricsInput<N extends string> =
   | MetricsDate<N>;
 // | MetricsReference<T>;
 
-type PropertiesMetrics<T> = T extends Record<string, any>
-  ? MetricsInput<keyof T & string> | MetricsInput<keyof T & string>[]
-  : MetricsInput<string> | MetricsInput<string>[];
+type PropertiesMetrics<T> =
+  T extends Record<string, any>
+    ? MetricsInput<keyof T & string> | MetricsInput<keyof T & string>[]
+    : MetricsInput<string> | MetricsInput<string>[];
 
 type MetricsBase<N extends string, K extends 'boolean' | 'date' | 'integer' | 'number' | 'text'> = {
   kind: K;
@@ -282,16 +283,16 @@ export class MetricsManager<T, P extends MetricsProperty<T>> {
 type KindToAggregateType<K> = K extends 'text'
   ? AggregateText
   : K extends 'date'
-  ? AggregateDate
-  : K extends 'integer'
-  ? AggregateNumber
-  : K extends 'number'
-  ? AggregateNumber
-  : K extends 'boolean'
-  ? AggregateBoolean
-  : K extends 'reference'
-  ? AggregateReference
-  : never;
+    ? AggregateDate
+    : K extends 'integer'
+      ? AggregateNumber
+      : K extends 'number'
+        ? AggregateNumber
+        : K extends 'boolean'
+          ? AggregateBoolean
+          : K extends 'reference'
+            ? AggregateReference
+            : never;
 
 export type AggregateType = AggregateBoolean | AggregateDate | AggregateNumber | AggregateText;
 
@@ -299,14 +300,14 @@ type AggregateResult<T, M extends PropertiesMetrics<T> | undefined = undefined> 
   properties: T extends undefined
     ? Record<string, AggregateType>
     : M extends MetricsInput<keyof T & string>[]
-    ? {
-        [K in M[number] as K['propertyName']]: KindToAggregateType<K['kind']>;
-      }
-    : M extends MetricsInput<keyof T & string>
-    ? {
-        [K in M as K['propertyName']]: KindToAggregateType<K['kind']>;
-      }
-    : undefined;
+      ? {
+          [K in M[number] as K['propertyName']]: KindToAggregateType<K['kind']>;
+        }
+      : M extends MetricsInput<keyof T & string>
+        ? {
+            [K in M as K['propertyName']]: KindToAggregateType<K['kind']>;
+          }
+        : undefined;
   totalCount: number;
 };
 
