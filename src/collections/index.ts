@@ -142,8 +142,8 @@ const collections = (connection: Connection, dbVersionSupport: DbVersionSupport)
         vectorIndexConfig: vectorsConfig
           ? undefined
           : vectorIndex
-          ? parseVectorIndexConfig(vectorIndex.config)
-          : undefined,
+            ? parseVectorIndexConfig(vectorIndex.config)
+            : undefined,
         vectorIndexType: vectorsConfig ? undefined : vectorIndex ? vectorIndex.name : 'hnsw',
       };
       await new ClassCreator(connection).withClass(schema).do();
