@@ -23,6 +23,9 @@ importers:
       nice-grpc-client-middleware-deadline:
         specifier: ^2.0.11
         version: 2.0.11
+      nice-grpc-common:
+        specifier: 2.0.2
+        version: 2.0.2
       uuid:
         specifier: ^9.0.1
         version: 9.0.1

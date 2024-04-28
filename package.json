@@ -25,8 +25,8 @@
     "build": "npm run build:node",
     "build:web": "tsup",
     "build:cjs": "tsc --module commonjs --outDir dist/node/cjs && touch dist/node/cjs/package.json && echo '{\"type\": \"commonjs\"}' > dist/node/cjs/package.json",
-    "build:esm": "tsc --module esnext --outDir dist/node/esm && touch dist/node/esm/package.json && echo '{\"type\": \"module\"}' > dist/node/esm/package.json",
-    "build:node": "npm run lint && npm run build:cjs && npm run build:esm && prettier --write --no-error-on-unmatched-pattern '**/dist/**/*.{ts,js}'",
+    "build:esm": "tsc --module NodeNext --outDir dist/node/esm && touch dist/node/esm/package.json && echo '{\"type\": \"module\"}' > dist/node/esm/package.json",
+    "build:node": "npm run lint && npm run build:esm && npm run build:esm && prettier --write --no-error-on-unmatched-pattern '**/dist/**/*.{ts,js}'",
     "prepack": "npm run build",
     "lint": "eslint --ext .ts,.js .",
     "lint:fix": "npm run lint -- --fix",
@@ -55,6 +55,7 @@
     "graphql": "^16.8.1",
     "long": "^5.2.3",
     "nice-grpc": "^2.1.8",
+    "nice-grpc-common": "2.0.2",
     "nice-grpc-client-middleware-deadline": "^2.0.11",
     "uuid": "^9.0.1"
   },

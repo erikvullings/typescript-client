@@ -15,8 +15,16 @@
     "outDir": "./dist/node",
     "declaration": true,
     "rootDir": "./src",
-    "types": ["node", "uuid", "jest"]
+    "types": [
+      "node",
+      "uuid",
+      "jest"
+    ]
   },
-  "include": ["./src/**/*"],
-  "exclude": ["**/*.test.ts"]
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "**/*.test.ts"
+  ]
 }
